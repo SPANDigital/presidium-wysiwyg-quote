@@ -227,6 +227,16 @@ class Quote {
     const text = quoteElement.querySelector(`.${this.CSS.text}`);
     const caption = quoteElement.querySelector(`.${this.CSS.caption}`);
 
+    const addNewLine = (node) => {
+      if (node.nodeName === '#text' && !node.nodeValue.endsWith('\n')) {
+        node.nodeValue = node.nodeValue.concat('\n');
+      } else {
+        node.childNodes.forEach(addNewLine);
+      }
+    }
+
+    addNewLine(text);
+
     return Object.assign(this.data, {
       text: text.innerHTML,
       caption: caption.innerHTML,

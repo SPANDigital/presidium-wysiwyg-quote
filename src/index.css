@@ -9,6 +9,7 @@
 .cdx-quote__text {
   min-height: 158px;
   margin-bottom: 10px;
+  white-space: pre-wrap;
 }
 
 .cdx-quote__caption {}
