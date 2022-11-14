@@ -227,15 +227,22 @@ class Quote {
     const text = quoteElement.querySelector(`.${this.CSS.text}`);
     const caption = quoteElement.querySelector(`.${this.CSS.caption}`);
 
-    const addNewLine = (node) => {
-      if (node.nodeName === '#text' && !node.nodeValue.endsWith('\n')) {
+    const addNewLine = (node, isParentDiv) => {
+      // For some reason, EditorJS does not interpret text with divs as single lines.
+      // Recursively traverse all nodes within the quote block, and add \n to the end
+      // of each text block within a div. 
+      if (isParentDiv && node.nodeName === '#text' && !node.nodeValue.endsWith('\n')) {
         node.nodeValue = node.nodeValue.concat('\n');
       } else {
-        node.childNodes.forEach(addNewLine);
+        node.childNodes.forEach((childNode, index, arr) => {
+          const nextChild = arr[index + 1];
+          const isNextDiv = nextChild ? nextChild.nodeName === 'DIV' : false;
+          addNewLine(childNode, node.nodeName === 'DIV' && isNextDiv);
+        });
       }
     }
 
-    addNewLine(text);
+    addNewLine(text, true);
 
     return Object.assign(this.data, {
       text: text.innerHTML,
