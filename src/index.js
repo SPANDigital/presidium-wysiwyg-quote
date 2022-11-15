@@ -245,7 +245,7 @@ class Quote {
       }
     }
 
-    addNewLine(text, true);
+    addNewLine(text, true, false);
 
     return Object.assign(this.data, {
       text: text.innerHTML,
