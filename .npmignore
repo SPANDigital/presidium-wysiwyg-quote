@@ -1,4 +1,6 @@
-.idea/
 src/
+.github/
+.babelrc
+.eslintrc
 webpack.config.js
 yarn.lock
