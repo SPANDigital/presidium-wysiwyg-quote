@@ -232,7 +232,7 @@ class Quote {
 
     return Object.assign(this.data, {
       text: sanitizedText,
-      caption: caption.innerHTML,
+      caption: '',
     });
   }
 
