@@ -212,7 +212,7 @@ class Quote {
     caption.dataset.placeholder = this.captionPlaceholder;
 
     container.appendChild(quote);
-    container.appendChild(caption);
+    //container.appendChild(caption);
 
     return container;
   }
