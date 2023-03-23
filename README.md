@@ -1,10 +1,6 @@
-![](https://badgen.net/badge/Editor.js/v2.0/blue)
-
 # Quote Tool
 
-Provides Quote Blocks for the [Editor.js](https://editorjs.io).
-
-![](https://capella.pics/017dca46-6869-40cb-93a0-994416576e33.jpg)
+Provides Quote Blocks for the Presidium WYSIWYG editor
 
 ## Installation
 
@@ -13,30 +9,7 @@ Provides Quote Blocks for the [Editor.js](https://editorjs.io).
 Get the package
 
 ```shell
-npm i --save-dev @editorjs/quote
-```
-
-Include module at your application
-
-```javascript
-const Quote = require('@editorjs/quote');
-```
-
-### Download to your project's source dir
-
-1. Upload folder `dist` from repository
-2. Add `dist/bundle.js` file to your page.
-
-### Load from CDN
-
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/quote).
-
-`https://cdn.jsdelivr.net/npm/@editorjs/quote@latest`
-
-Then require this script on page with Editor.js.
-
-```html
-<script src="..."></script>
+yarn add @spandigital/presidium-wysiwyg-quote
 ```
 
 ## Usage
@@ -111,3 +84,18 @@ You can choose alignment for the quote. It takes no effect while editing, but sa
     }
 }
 ```
+
+## Releases
+
+### Master
+To release a new non-beta version, do the following:
+
+1. Merge your changes into `master`
+2. Increment the version in `package.json` (The release GitHub action will not run unless this is done)
+3. run `npm i`
+4. Commit and push
+
+The package will then be published to the @spandigital registry.
+
+### Develop
+Beta packages are automatically published whenever a commit is pushed to the `develop` branch.
