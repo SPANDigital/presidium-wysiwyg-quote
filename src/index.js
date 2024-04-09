@@ -224,11 +224,15 @@ class Quote {
    * @returns {QuoteData}
    */
   save(quoteElement) {
-    const text = quoteElement.querySelector(`.${this.CSS.text}`);
-    const caption = quoteElement.querySelector(`.${this.CSS.caption}`);
+    let oldHTML = null;
+    let newHTML = text.innerHTML;
 
-    // Replace the divs EditorJS adds on new lines with a <br/>
-    const sanitizedText = text.innerHTML.replace(/<div>(.*?)<\/div>/g, '<br/>$1');
+    do {
+      oldHTML = newHTML;
+      newHTML = oldHTML.replace(/<div>((.|\n)*?)<\/div>/g, '\n\n$1');
+    } while(newHTML !== oldHTML);
+
+    const sanitizedText = newHTML;
 
     return Object.assign(this.data, {
       text: sanitizedText,
