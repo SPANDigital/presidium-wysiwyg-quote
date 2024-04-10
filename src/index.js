@@ -224,12 +224,16 @@ class Quote {
    * @returns {QuoteData}
    */
   save(quoteElement) {
+    const text = quoteElement.querySelector(`.${this.CSS.text}`);
+    const prepRegex = /<br>|\r/g;
+    const loopRegex = /<div>((.|\n)*?)<\/div>/g;
+
     let oldHTML = null;
-    let newHTML = text.innerHTML;
+    let newHTML = text.innerHTML.replace(prepRegex, '\n');
 
     do {
       oldHTML = newHTML;
-      newHTML = oldHTML.replace(/<div>((.|\n)*?)<\/div>/g, '\n\n$1');
+      newHTML = oldHTML.replace(loopRegex, '\n$1');
     } while(newHTML !== oldHTML);
 
     const sanitizedText = newHTML;
